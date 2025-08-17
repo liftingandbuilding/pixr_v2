@@ -1,18 +1,8 @@
-# Welcome to your Lovable project
+# PIXR - Retro Thumbnail generator 
 
-## Project info
+## Read PRD Below
 
-**URL**: https://lovable.dev/projects/0ec6789f-d334-4481-ad60-524e5438411e
-
-## How can I edit this code?
-
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/0ec6789f-d334-4481-ad60-524e5438411e) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
+**URL**:(https://www.notion.so/PRD-Product-Pixr-244acfb6981f808da94fc8ca930b4eb4)
 
 **Use your preferred IDE**
 
