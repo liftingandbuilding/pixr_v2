@@ -1,13 +1,34 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { Header } from "@/components/Header";
+import { CanvasArea } from "@/components/CanvasArea";
+import { RightPanel } from "@/components/RightPanel";
+import { EditorProvider } from "@/contexts/EditorContext";
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+    <EditorProvider>
+      <div className="min-h-screen bg-background">
+        <Header />
+        <main className="flex flex-col lg:flex-row h-[calc(100vh-4rem)] gap-4 p-4">
+          {/* Left Panel - Future features (Desktop only) */}
+          <div className="w-64 hidden lg:block">
+            <div className="panel-retro h-full">
+              <h3 className="text-sm mb-4 text-pixel-lime">LAYERS</h3>
+              <p className="text-xs opacity-60">Coming Soon...</p>
+            </div>
+          </div>
+          
+          {/* Main Canvas Area */}
+          <div className="flex-1 min-h-0">
+            <CanvasArea />
+          </div>
+          
+          {/* Right Panel - Controls */}
+          <div className="w-full lg:w-80 lg:min-h-0">
+            <RightPanel />
+          </div>
+        </main>
       </div>
-    </div>
+    </EditorProvider>
   );
 };
 

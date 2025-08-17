@@ -8,51 +8,55 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Pixr Retro Color System */
+    --background: 0 0% 96%; /* Off-white #F5F5F5 */
+    --foreground: 0 0% 0%; /* Pure black */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 0 0% 96%;
+    --card-foreground: 0 0% 0%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 96%;
+    --popover-foreground: 0 0% 0%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Lime Green Primary */
+    --primary: 77 100% 50%; /* #A3FF00 */
+    --primary-foreground: 0 0% 0%;
+    
+    /* Pixel Pink Secondary */
+    --secondary: 315 100% 78%; /* #FF9DE0 */
+    --secondary-foreground: 0 0% 0%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 0 0% 90%;
+    --muted-foreground: 0 0% 20%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 77 100% 50%;
+    --accent-foreground: 0 0% 0%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 0 0% 96%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Retro borders - 1px solid */
+    --border: 0 0% 0%;
+    --input: 0 0% 96%;
+    --ring: 77 100% 50%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --radius: 0; /* Sharp corners for retro feel */
 
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Custom Pixr tokens */
+    --pixel-lime: 77 100% 50%; /* #A3FF00 */
+    --pixel-pink: 315 100% 78%; /* #FF9DE0 */
+    --pixel-white: 0 0% 96%; /* #F5F5F5 */
+    --pixel-black: 0 0% 0%; /* #000000 */
+    
+    /* Neon glow effects */
+    --glow-lime: 0 0 20px hsl(var(--pixel-lime));
+    --glow-pink: 0 0 20px hsl(var(--pixel-pink));
+    
+    /* Retro transitions */
+    --pixel-transition: all 0.1s ease;
+    
+    /* Checkered pattern */
+    --checker-size: 20px;
   }
 
   .dark {
@@ -100,6 +104,83 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-pixel;
+  }
+}
+
+@layer components {
+  /* Pixel Button Styles */
+  .btn-pixel {
+    @apply border-2 border-foreground bg-background text-foreground px-4 py-2 
+           transition-all duration-100 font-pixel text-sm uppercase tracking-wide
+           hover:bg-primary hover:text-primary-foreground hover:shadow-[2px_2px_0_0_hsl(var(--foreground))];
+  }
+  
+  .btn-pixel-export {
+    @apply btn-pixel bg-secondary text-secondary-foreground
+           hover:bg-secondary hover:shadow-[2px_2px_0_0_hsl(var(--pixel-black))]
+           hover:animate-pulse;
+  }
+  
+  /* Checkered Canvas Background */
+  .canvas-checker {
+    background-image: 
+      linear-gradient(45deg, hsl(var(--muted)) 25%, transparent 25%),
+      linear-gradient(-45deg, hsl(var(--muted)) 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, hsl(var(--muted)) 75%),
+      linear-gradient(-45deg, transparent 75%, hsl(var(--muted)) 75%);
+    background-size: var(--checker-size) var(--checker-size);
+    background-position: 0 0, 0 calc(var(--checker-size) / 2), calc(var(--checker-size) / 2) calc(-1 * var(--checker-size) / 2), calc(-1 * var(--checker-size) / 2) 0px;
+  }
+  
+  /* Retro Panel Styling */
+  .panel-retro {
+    @apply border-2 border-foreground bg-background p-4 shadow-[4px_4px_0_0_hsl(var(--foreground))];
+  }
+  
+  /* Pixel Perfect Input */
+  .input-pixel {
+    @apply border-2 border-foreground bg-input px-3 py-2 font-pixel text-sm
+           focus:outline-none focus:border-primary focus:shadow-[2px_2px_0_0_hsl(var(--primary))];
+  }
+  
+  /* Neon Glow Effects */
+  .glow-lime {
+    box-shadow: var(--glow-lime);
+  }
+  
+  .glow-pink {
+    box-shadow: var(--glow-pink);
+  }
+  
+  /* Pixel Grid */
+  .pixel-grid {
+    background-image: 
+      linear-gradient(rgba(0,0,0,.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,0,0,.1) 1px, transparent 1px);
+    background-size: 10px 10px;
+  }
+}
+
+@layer utilities {
+  .text-pixel-lime {
+    color: hsl(var(--pixel-lime));
+  }
+  
+  .text-pixel-pink {
+    color: hsl(var(--pixel-pink));
+  }
+  
+  .bg-pixel-lime {
+    background-color: hsl(var(--pixel-lime));
+  }
+  
+  .bg-pixel-pink {
+    background-color: hsl(var(--pixel-pink));
+  }
+  
+  .border-pixel {
+    border-width: 1px;
+    border-color: hsl(var(--foreground));
   }
 }
